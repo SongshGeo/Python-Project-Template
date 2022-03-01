@@ -1,0 +1,50 @@
+# Project name
+project:
+  name: "Project Managing Tools"
+  status: "Ongoing"
+  start: 2022
+  end: None
+
+# Repository name
+repo:
+  name: "Python-Project-Template"
+  owner: "SongshGeo"
+  background: ""
+  license: "MIT"
+  introduction: "A toolbox for initialize a standard python project. It allows user to manage and handle a python academic project easily."
+
+# contributors:
+contributors: "configs/contributors.yaml"
+
+# dir structure
+structure: "mksci/configs/structure.yaml"
+
+python:
+  version: "3.x"
+
+links: "configs/links.yaml"
+
+docs: "configs/docs.yaml"
+
+log:
+  name: "Project"
+  path: ""
+  LOG_FORMAT: "%(asctime)s %(name)s %(levelname)s %(filename)s %(message)s "
+  DATE_FORMAT: '%Y-%m-%d  %H:%M:%S %a '
+  cmd_level: "WARNING"
+  file_level: "INFO"
+
+# Set folder levels to each structure
+folder_level:
+  # main modules
+  mian:
+    ignore: False
+    doc: True
+  # support
+  support:
+    ignore: False
+    doc: False
+  # local
+  local:
+    ignore: True
+    doc: False

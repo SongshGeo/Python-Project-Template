@@ -1,0 +1,23 @@
+# folder: folder_level
+data:
+  source: local
+  processed: local
+  results: support
+
+docs:
+  papers: main
+  docs: support
+  drafts: support
+
+figs:
+  diagrams: support
+  outputs: support
+  resources: support
+
+tests: support
+notebooks: main
+reports: support
+
+main:
+  modules: main
+  tools: main

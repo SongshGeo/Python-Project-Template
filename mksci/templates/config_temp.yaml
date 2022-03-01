@@ -1,0 +1,75 @@
+# Project name
+project:
+  name: "Project Managing Tools"
+  status: "Ongoing"
+  start: 2022
+  end: None
+
+# Repository name
+repo:
+  name: "Python-Project-Template"
+  owner: "SongshGeo"
+  background: "fig@background"
+  license: "MIT"
+  introduction: "A toolbox for initialize a standard python project."
+
+# contributors:
+contributors:
+  Shuang Song: True
+  Shuai Wang: False
+
+# dir structure
+structure:
+  data:
+    source: local
+    processed: local
+    results: support
+
+  docs:
+    papers: main
+    docs: support
+    drafts: support
+
+  figs:
+    diagrams: support
+    outputs: support
+    resources: support
+
+  tests: support
+  notebooks: main
+  reports: support
+
+  main:
+    modules: main
+    tools: main
+
+python:
+  version: "3.x"
+
+links:
+  fig@background: "![background](https://gitee.com/SongshGeo/Picgo2/raw/master/uPic/background.jpeg)"
+  github@songshgeo: "[my GitHub](https://github.com/SongshGeo)"
+  researchgate@songshgeo: "https://www.researchgate.net/profile/Shuang-Song-14"
+
+log:
+  name: "project"
+  path: ""
+  LOG_FORMAT: "%(asctime)s %(name)s %(levelname)s %(filename)s %(message)s "
+  DATE_FORMAT: '%Y-%m-%d  %H:%M:%S %a '
+  cmd_level: "WARNING"
+  file_level: "INFO"
+
+# Set folder levels to each structure
+folder_level:
+  # main modules
+  mian:
+    ignore: False
+    doc: True
+  # support
+  support:
+    ignore: False
+    doc: False
+  # local
+  local:
+    ignore: True
+    doc: False
