@@ -8,20 +8,23 @@
 
 from setuptools import find_packages, setup
 
+from mksci import __version__, description
+
 setup(
     name="mkpro-sci",
-    version="0.1",
+    version=__version__,
     keywords=("mksci"),
-    description="eds sdk",
-    long_description="Testing",
+    description="Scientific Python Project automatic manager",
+    long_description=description,
     license="MIT Licence",
     url="https://github.com/SongshGeo",
     author="SongshGeo",
     author_email="songshgeo@gmail.com",
     packages=find_packages(),
     include_package_data=True,
+    zip_safe=True,
     platforms="any",
-    install_requires=[],
+    install_requires=["click"],
     scripts=[],
-    entry_points={"console_scripts": ["test = test.help:main"]},
+    entry_points={"console_scripts": ["mksci = mksci.__main__:cli"]},
 )

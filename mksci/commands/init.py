@@ -8,6 +8,7 @@
 
 import os
 
+import click
 from fresh import CONFIG, ROOT, TEMPLATES, check_yaml
 
 
@@ -40,6 +41,18 @@ def playground():
     os.system(
         f"cp {os.path.join(TEMPLATES, 'scripts/playground.ipynb')} {os.path.join(ROOT, 'notebooks/.')}"
     )
+
+
+@click.command(name="init")
+@click.option("-g", default="", help="input your")
+def init():
+    """
+    Initiate the repo.
+    --all:
+    :return:
+    """
+    click.echo("Init repo.")
+    pass
 
 
 if __name__ == "__main__":

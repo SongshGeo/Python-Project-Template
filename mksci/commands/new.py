@@ -10,6 +10,8 @@ import logging
 import os
 import sys
 
+import click
+
 ROOT = os.getcwd()
 log = logging.getLogger(__name__)
 # package path
@@ -30,6 +32,7 @@ ROOT = "{ROOT}"
 """
 
 
+@click.Command(name="new")
 def new(output_dir):
     config_path = os.path.join(output_dir, "config.py")
     yaml_path = os.path.join(output_dir, "config.yaml")
