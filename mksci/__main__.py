@@ -134,13 +134,13 @@ def cli():
 
 
 @cli.command(name="new")
-@click.argument("project_dictionary")
+@click.option("--dictionary", default="", help="If create a new dictionary?")
 @common_options
-def new_command(project_dictionary):
+def new_command(dictionary):
     """Create a new SCI project in the current directory."""
     from mksci.commands import new
 
-    new.new(project_dictionary)
+    new.new(dictionary)
 
 
 if __name__ == "__main__":  # pragma: no cover

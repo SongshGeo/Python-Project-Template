@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+﻿#!/usr/bin/env python
 # -*-coding:utf-8 -*-
 # Created date: 2022/3/1
 # @Author  : Shuang Song
@@ -11,18 +11,12 @@ import os
 import sys
 
 import click
+import requests
 
 ROOT = os.getcwd()
 log = logging.getLogger(__name__)
-# package path
-path_mksci = os.path.abspath(os.path.join(sys.argv[0], "../.."))
-TEMPLATES = os.path.join(path_mksci, "templates")
-
-with open(
-    os.path.join(TEMPLATES, "config_temp.yaml"), "r", encoding="utf-8"
-) as file:
-    config_yaml = file.read()
-    file.close()
+web = r"https://raw.githubusercontent.com/SongshGeo/Python-Project-Template/master/mksci/templates/config_temp.yaml"
+config_yaml = requests.get(web).content
 
 config_py = f"""
 import logging
@@ -32,8 +26,11 @@ ROOT = "{ROOT}"
 """
 
 
-@click.Command(name="new")
 def new(output_dir):
+    if len(output_dir) > 1 and not os.path.exists(output_dir):
+        log.info(f"Creating project directory: {output_dir}")
+        os.mkdir(output_dir)
+
     config_path = os.path.join(output_dir, "config.py")
     yaml_path = os.path.join(output_dir, "config.yaml")
     if os.path.exists(config_path):
@@ -45,7 +42,7 @@ def new(output_dir):
         f.write(config_py)
 
     log.info(f"Writing initial config yaml: {yaml_path}")
-    with open(yaml_path, "w", encoding="utf-8") as f:
+    with open(yaml_path, "wb") as f:
         f.write(config_yaml)
 
 

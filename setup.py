@@ -24,7 +24,7 @@ setup(
     include_package_data=True,
     zip_safe=True,
     platforms="any",
-    install_requires=["click"],
+    install_requires=["requests"],
     scripts=[],
     entry_points={"console_scripts": ["mksci = mksci.__main__:cli"]},
 )
