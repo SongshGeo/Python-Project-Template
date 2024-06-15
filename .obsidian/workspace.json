@@ -1,0 +1,179 @@
+{
+  "main": {
+    "id": "4aa2b7dd332b9e46",
+    "type": "split",
+    "children": [
+      {
+        "id": "fea926b53a5b8b48",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "31ef272f92f0efd0",
+            "type": "leaf",
+            "state": {
+              "type": "thino_view",
+              "state": {}
+            }
+          }
+        ]
+      },
+      {
+        "id": "721c8e91d319a900",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "bcc58b0fd9b01ce5",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "changelog.d/2024-06-15.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "69d488efcc05af35",
+    "type": "split",
+    "children": [
+      {
+        "id": "19603a6415640a4a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "76b81e9d04e9ad32",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "80d1e1b883cb1ddb",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "cd1a0133e191ca73",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "b38e755b6521e814",
+    "type": "split",
+    "children": [
+      {
+        "id": "bca118da306d11fc",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5fd706bda789ed8b",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "changelog.d/2024-06-15.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "40b5de21fab7707f",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "changelog.d/2024-06-15.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "929e9f18332ac17b",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "5a32bc0f57ce59f8",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "changelog.d/2024-06-15.md"
+              }
+            }
+          },
+          {
+            "id": "0c69586a2bf43509",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 4
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "obsidian-memos:Thino": false
+    }
+  },
+  "active": "bcc58b0fd9b01ce5",
+  "lastOpenFiles": [
+    "CHANGELOG.md",
+    "changelog.d/2024-06-15.md",
+    "2024-06-15.md",
+    "changelog.d"
+  ]
+}
