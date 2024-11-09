@@ -59,3 +59,8 @@ jupyter:
 
 test-demo:
 	poetry run python src/model/exp.py ds.cities.shp='data/test/YR_cities_test.shp' farmer.forced_since=1981 time.end='1982-01-01'
+
+publish:
+	make test
+	standard-version
+	git push --follow-tags origin dev
