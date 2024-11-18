@@ -6,7 +6,6 @@ setup:
 
 setup-organizor:
 	poetry add hydra-core
-	poetry add --group dev sourcery
 
 setup-pre-commit:
 	echo "安装 pre-commit 依赖"
