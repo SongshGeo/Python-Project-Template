@@ -4,25 +4,19 @@ setup:
 	make setup-pre-commit
 	make setup-organizor
 
-# 安装必要的代码检查工具
-# black: https://github.com/psf/black
-# flake8: https://github.com/pycqa/flake8
-# isort: https://github.com/PyCQA/isort
-# nbstripout: https://github.com/kynan/nbstripout
-# pydocstyle: https://github.com/PyCQA/pydocstyle
-# pre-commit-hooks: https://github.com/pre-commit/pre-commit-hooks
-
 setup-organizor:
 	poetry add hydra-core
 	poetry add --group dev sourcery
 
 setup-pre-commit:
+	echo "安装 pre-commit 依赖"
 	poetry add --group dev flake8 isort nbstripout pydocstyle pre-commit-hooks
+	echo "安装 pre-commit"
 	poetry run pre-commit install
+	echo "pre-commit 安装完成"
 
 install-jupyter:
 	poetry add ipykernel --group dev
-	poetry add --group dev jupyterlab
 	poetry add jupyterlab_execute_time --group dev
 
 install-tests:
@@ -45,22 +39,18 @@ install-docs:
 	poetry add --group docs mkdocs-callouts
 	poetry add --group docs mkdocs-glightbox
 
-obsidian-docs:
-	git clone --depth=1 git@github.com:SongshGeo/Obsidian-MkDocs-Vault-Template.git .obsidian
-
 test:
 	poetry run pytest -vs --clean-alluredir --alluredir tmp/allure_results
 
 report:
 	poetry run allure serve tmp/allure_results
 
-jupyter:
-	poetry run jupyter lab
-
-test-demo:
-	poetry run python src/model/exp.py ds.cities.shp='data/test/YR_cities_test.shp' farmer.forced_since=1981 time.end='1982-01-01'
-
 publish:
+	echo "开始发布新版本"
+	echo "运行单元测试"
 	make test
+	echo "生成版本号"
 	standard-version
+	echo "推送代码和标签"
 	git push --follow-tags origin dev
+	echo "发布成功"
