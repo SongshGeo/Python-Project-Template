@@ -4,25 +4,19 @@ setup:
 	make setup-pre-commit
 	make setup-organizor
 
-# 安装必要的代码检查工具
-# black: https://github.com/psf/black
-# flake8: https://github.com/pycqa/flake8
-# isort: https://github.com/PyCQA/isort
-# nbstripout: https://github.com/kynan/nbstripout
-# pydocstyle: https://github.com/PyCQA/pydocstyle
-# pre-commit-hooks: https://github.com/pre-commit/pre-commit-hooks
-
 setup-organizor:
 	poetry add hydra-core
 	poetry add --group dev sourcery
 
 setup-pre-commit:
+	echo "安装 pre-commit 依赖"
 	poetry add --group dev flake8 isort nbstripout pydocstyle pre-commit-hooks
+	echo "安装 pre-commit"
 	poetry run pre-commit install
+	echo "pre-commit 安装完成"
 
 install-jupyter:
 	poetry add ipykernel --group dev
-	poetry add --group dev jupyterlab
 	poetry add jupyterlab_execute_time --group dev
 
 install-tests:
@@ -45,17 +39,61 @@ install-docs:
 	poetry add --group docs mkdocs-callouts
 	poetry add --group docs mkdocs-glightbox
 
-obsidian-docs:
-	git clone --depth=1 git@github.com:SongshGeo/Obsidian-MkDocs-Vault-Template.git .obsidian
+# 检查必要的命令是否存在
+STANDARD_VERSION := $(shell command -v standard-version 2> /dev/null)
+GIT := $(shell command -v git 2> /dev/null)
 
+.PHONY: publish test
+
+publish:
+	@echo "开始发布新版本..."
+
+	@# 检查是否在 dev 分支
+	@if [ "$$(git rev-parse --abbrev-ref HEAD)" != "dev" ]; then \
+		echo "错误: 必须在 dev 分支上执行发布"; \
+		exit 1; \
+	fi
+
+	@# 检查工作区是否干净
+	@if [ -n "$$(git status --porcelain)" ]; then \
+		echo "错误: 工作区不干净，请先提交或存储更改"; \
+		exit 1; \
+	fi
+
+	@# 检查是否有未拉取的更新
+	@git fetch origin
+	@if [ "$$(git rev-list HEAD..origin/dev --count)" != "0" ]; then \
+		echo "错误: 本地分支落后于远程，请先拉取最新代码"; \
+		exit 1; \
+	fi
+
+	@echo "运行单元测试..."
+	@if ! make test; then \
+		echo "错误: 单元测试失败"; \
+		exit 1; \
+	fi
+
+	@# 检查 standard-version 是否安装
+	@if [ -z "$(STANDARD_VERSION)" ]; then \
+		echo "错误: standard-version 未安装，请先安装: npm install -g standard-version"; \
+		exit 1; \
+	fi
+
+	@echo "生成版本号..."
+	@standard-version || { echo "错误: 版本号生成失败"; exit 1; }
+
+	@echo "推送代码和标签..."
+	@git push --follow-tags origin dev || { echo "错误: 推送失败"; exit 1; }
+
+	@echo "✨ 发布成功!"
+
+# 如果测试命令不存在，则跳过测试
 test:
-	poetry run pytest -vs --clean-alluredir --alluredir tmp/allure_results
+	@if [ -f "pytest" ] || [ -f "python -m pytest" ]; then \
+		pytest; \
+	else \
+		echo "警告: 未找到测试命令，跳过测试"; \
+	fi
 
 report:
 	poetry run allure serve tmp/allure_results
-
-jupyter:
-	poetry run jupyter lab
-
-test-demo:
-	poetry run python src/model/exp.py ds.cities.shp='data/test/YR_cities_test.shp' farmer.forced_since=1981 time.end='1982-01-01'

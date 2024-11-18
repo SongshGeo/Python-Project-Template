@@ -1,0 +1,3 @@
+defaults:
+  - ds: mac
+  - _self_
