@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - master
 
 permissions:
   contents: write
@@ -23,31 +24,31 @@ jobs:
           release-type: python  # 改为 python
           package-name: mksci-font  # 改为你的包名
 
-  # 发布到 pypi
-  publish-pypi:
-    needs: release-please
-    runs-on: ubuntu-latest
-    if: ${{ needs.release-please.outputs.release_created }}
-    steps:
-      - uses: actions/checkout@v3
+  # # 发布到 pypi
+  # publish-pypi:
+  #   needs: release-please
+  #   runs-on: ubuntu-latest
+  #   if: ${{ needs.release-please.outputs.release_created }}
+  #   steps:
+  #     - uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
+  #     - name: Set up Python
+  #       uses: actions/setup-python@v4
+  #       with:
+  #         python-version: '3.x'
 
-      - name: Install poetry
-        run: |
-          curl -sSL https://install.python-poetry.org | python3 -
+  #     - name: Install poetry
+  #       run: |
+  #         curl -sSL https://install.python-poetry.org | python3 -
 
-      - name: Configure poetry
-        run: |
-          poetry config pypi-token.pypi ${{ secrets.PYPI_TOKEN }}
+  #     - name: Configure poetry
+  #       run: |
+  #         poetry config pypi-token.pypi ${{ secrets.PYPI_TOKEN }}
 
-      - name: Build and publish
-        run: |
-          poetry build
-          poetry publish
+  #     - name: Build and publish
+  #       run: |
+  #         poetry build
+  #         poetry publish
 
   # 打包源码, 上传到 release 中
   # build-and-attach-assets:
