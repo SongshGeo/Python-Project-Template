@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/SongshGeo/Python-Project-Template/compare/v1.0.1...v1.1.0) (2024-12-07)
+
+
+### Features
+
+* :sparkles: 使用 release-please 代替过时的 standard-version ([d76f48c](https://github.com/SongshGeo/Python-Project-Template/commit/d76f48cf319555c22d027f5d2d793bf4d7545bd1))
+
+
+### Bug Fixes
+
+* :bug: 让 GitHub workflow 在 main 和 master 分支都能用 ([d5c368e](https://github.com/SongshGeo/Python-Project-Template/commit/d5c368e59e08fe9a3c6c46be63cab246e9789cb5))
+* :green_heart: 不再默认配置发布到 pypi ([7c078ba](https://github.com/SongshGeo/Python-Project-Template/commit/7c078ba0f047ebf6d26a19d715764a4394b090cf))
+
 ### [1.0.1](https://github.com/SongshGeo/Python-Project-Template/compare/v1.0.0...v1.0.1) (2024-11-18)
 
 
