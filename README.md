@@ -34,7 +34,7 @@
 14. 使用 `black` 进行代码格式化
 15. 使用 `mypy` 进行类型检查
 16. 使用 `coverage` 进行测试覆盖率分析
-17. 使用 `standard-version` 进行版本管理
+17. 使用 `release-please` 进行版本管理
 18. 使用 `mkdocs-material` 生成美观的文档
 
 ## 使用方法
