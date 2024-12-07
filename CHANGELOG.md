@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.1](https://github.com/SongshGeo/Python-Project-Template/compare/v1.0.0...v1.0.1) (2024-11-18)
+
+
+### 🐛 Bug Fixes
+
+* :heavy_minus_sign: 不再使用 sourcery 检查代码 ([e60bb53](https://github.com/SongshGeo/Python-Project-Template/commit/e60bb53b6e26f30e616b12596157a189a8cefaea))
+
 ## 1.0.0 (2024-11-18)
 
 
