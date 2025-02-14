@@ -14,6 +14,7 @@ future-annotations = ">=1.0.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = ">=7.2.1"
+ipywidgets = ">=8.1.5"
 allure-pytest = ">=2.13.0"
 ipykernel = ">=6.21.2"
 flake8 = ">=6.0.0"
@@ -22,6 +23,8 @@ nbstripout = ">=0.6.1"
 pydocstyle = ">=6.3.0"
 pre-commit-hooks = ">=4.4.0"
 snakeviz = ">=2.2.0"
+pytest-mpl = ">=0.17.0"
+questionary = "~2"
 
 
 [tool.poetry.group.docs.dependencies]
@@ -45,3 +48,24 @@ mkdocs-exclude = ">=1.0.2"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.flake8]
+max-line-length = 79
+max-complexity = 18
+extend-ignore = [
+    "E203",  # whitespace before ':'
+    "E231",  # missing whitespace after ','
+    "E266",  # too many leading '#' for block comment
+    "E501",  # line too long
+    "W503",  # line break before binary operator
+    "F403",  # 'from module import *' used
+    "F405",  # name may be undefined, or defined from star imports
+    "F401",  # imported but unused
+]
+exclude = [
+    ".git",
+    "__pycache__",
+    "build",
+    "dist",
+]
+select = ["B", "C", "E", "F", "W", "T4", "B9"]

@@ -27,8 +27,8 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### ⚠ BREAKING CHANGES
 
-* **build-package:** 
-* **init-this-repo,-commands:-new,-init,-fresh:** 
+* **build-package:**
+* **init-this-repo,-commands:-new,-init,-fresh:**
 
 ### 🔧 Chores
 
