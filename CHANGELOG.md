@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/SongshGeo/Python-Project-Template/compare/v1.1.0...v1.2.0) (2025-02-14)
+
+
+### Features
+
+* :sparkles: include a github sponsor workflow ([fe69410](https://github.com/SongshGeo/Python-Project-Template/commit/fe694102b43883baf14a108f4703ea60094fc73c))
+* :sparkles: 自动 setup 新项目 ([e350678](https://github.com/SongshGeo/Python-Project-Template/commit/e350678576c5de4743dcf98ecf43e7092fc2aa08))
+
+
+### Bug Fixes
+
+* :bug: Fix release please to update python package version ([04c6248](https://github.com/SongshGeo/Python-Project-Template/commit/04c624831786ba9a733e3a85b5fc9b198d7e2a1c))
+
 ## [1.1.0](https://github.com/SongshGeo/Python-Project-Template/compare/v1.0.1...v1.1.0) (2024-12-07)
 
 
