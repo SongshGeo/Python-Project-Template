@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "songshgeo"
-version = "1.0.1"
+version = "1.1.0"
 description = "Template"
 authors = ["SongshGeo <songshgeo@gmail.com>"]
 license = "MIT"

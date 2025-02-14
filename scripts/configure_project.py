@@ -9,6 +9,12 @@ from pathlib import Path
 
 import questionary
 
+README_TEMPLATE = """
+# {title}
+
+{description}
+"""
+
 
 def configure_files(project_name: str, project_description: str):
     """
@@ -37,15 +43,15 @@ def configure_files(project_name: str, project_description: str):
             print(f"! 警告: 未找到文件 {file_path}")
 
 
-def remove_ignore_files():
+def setup_description_files(title: str, description: str):
     """
-    删除 .gitignore 文件中的 'CHANGELOG.md'
+    清空'CHANGELOG.md'
     """
-    ignore_file = Path(".gitignore")
-    if ignore_file.exists():
-        content = ignore_file.read_text(encoding="utf-8")
-        content = content.replace("CHANGELOG.md\n", "")
-        ignore_file.write_text(content, encoding="utf-8")
+    Path("CHANGELOG.md").write_text("", encoding="utf-8")
+    Path("README.md").write_text(
+        README_TEMPLATE.format(title=title, description=description),
+        encoding="utf-8",
+    )
 
 
 def main():
@@ -64,7 +70,7 @@ def main():
     ).ask()
 
     configure_files(project_name, project_description)
-    remove_ignore_files()
+    setup_description_files(project_name, project_description)
     print("\n✨ 项目配置已完成!")
 
 
