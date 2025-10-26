@@ -37,18 +37,17 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Install poetry
+      - name: Install uv
         run: |
-          curl -sSL https://install.python-poetry.org | python3 -
-
-      - name: Configure poetry
-        run: |
-          poetry config pypi-token.pypi ${{ secrets.PYPI_TOKEN }}
+          curl -LsSf https://astral.sh/uv/install.sh | sh
 
       - name: Build and publish
+        env:
+          UV_PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
         run: |
-          poetry build
-          poetry publish
+          source "$HOME/.cargo/env"
+          uv build
+          uv publish
 
   # 打包源码, 上传到 release 中
   # build-and-attach-assets:
