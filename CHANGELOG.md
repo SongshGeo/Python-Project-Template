@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/SongshGeo/Python-Project-Template/compare/v1.2.0...v1.3.0) (2025-10-26)
+
+
+### Features
+
+* **makefile:** :sparkles: Add multi-version testing support with tox and update README instructions ([f68f78b](https://github.com/SongshGeo/Python-Project-Template/commit/f68f78b812997062d7b8000adc78b95b3b60e7dc))
+* **project:** :sparkles: Enhance project setup with uv and poetry support, update README and configuration scripts ([2ac0e5a](https://github.com/SongshGeo/Python-Project-Template/commit/2ac0e5a7844bb27b359f4b2d46ce41cdb49902e5))
+
+
+### Documentation
+
+* **docs:** :memo: Add comprehensive documentation including quick start guide, configuration details, and deployment instructions ([e58ef08](https://github.com/SongshGeo/Python-Project-Template/commit/e58ef08f622a5b4f9fa7a269461301f69403f27f))
+
 ## [1.2.0](https://github.com/SongshGeo/Python-Project-Template/compare/v1.1.0...v1.2.0) (2025-02-14)
 
 
