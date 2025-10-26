@@ -150,17 +150,38 @@ make report
 src/
 ├── core/          # 核心业务逻辑
 └── api/           # API 接口
+├── conftest.py             # pytest 配置
+├── test_configure_project.py  # 配置脚本测试
+└── test_*.py               # 其他测试文件
+```
 
-tests/
-├── conftest.py    # pytest 配置
-└── test_*.py      # 测试文件
+### 当前测试
+
+项目模板已包含基础测试：
+- `tests/test_configure_project.py` - 测试项目配置脚本
+
+运行测试：
+```bash
+make test
+# 或
+uv run pytest
 ```
 
 ### 添加新功能
 
 1. 在 `src/` 目录下添加您的代码
-2. 在 `tests/` 目录下添加对应的测试
+2. 在 `tests/` 目录下添加对应的测试文件
 3. 运行测试确保功能正常
+
+**测试示例：**
+
+```python
+# tests/test_my_module.py
+def test_my_function():
+    """Test my function."""
+    from src.my_module import my_function
+    assert my_function() == expected_value
+```
 
 ### 添加新依赖
 
@@ -202,6 +223,21 @@ poetry shell  # poetry
 ```
 
 ## 步骤 8：代码质量检查
+
+### 运行多版本测试
+
+使用 tox 测试代码在不同 Python 版本的兼容性：
+
+```bash
+# 测试所有版本（3.10-3.13）
+make tox
+
+# 测试特定版本
+make tox-e pyversion=py311
+
+# 查看可用环境
+make tox-list
+```
 
 ### 自动检查（推荐）
 

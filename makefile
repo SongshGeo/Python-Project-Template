@@ -67,4 +67,32 @@ docs-build:
 		poetry run mkdocs build; \
 	fi
 
-.PHONY: setup test report configure-project check-package-manager docs docs-build
+tox:
+	@echo "运行 tox 测试所有 Python 版本（3.10-3.13）..."
+	@if [ -n "$(UV)" ]; then \
+		uv run tox; \
+	elif [ -n "$(POETRY)" ]; then \
+		poetry run tox; \
+	fi
+
+tox-list:
+	@echo "查看可用环境..."
+	@if [ -n "$(UV)" ]; then \
+		uv run tox list; \
+	elif [ -n "$(POETRY)" ]; then \
+		poetry run tox list; \
+	fi
+
+tox-e:
+	@echo "运行特定版本的测试（用法: make tox-e pyversion=py311）..."
+	@if [ -z "$(pyversion)" ]; then \
+		echo "错误: 请指定版本，例如: make tox-e pyversion=py311"; \
+		exit 1; \
+	fi
+	@if [ -n "$(UV)" ]; then \
+		uv run tox -e $(pyversion); \
+	elif [ -n "$(POETRY)" ]; then \
+		poetry run tox -e $(pyversion); \
+	fi
+
+.PHONY: setup test report configure-project check-package-manager docs docs-build tox tox-list tox-e

@@ -123,11 +123,17 @@ make setup
 # 运行测试（自动适配包管理器）
 make test
 
+# 运行多版本测试（Python 3.10-3.13）
+make tox
+
 # 生成测试报告
 make report
 
 # 配置项目（修改项目名称、描述等）
 make configure-project
+
+# 查看文档
+make docs
 ```
 
 **注意：** Makefile 会自动检测系统中安装的包管理器（uv 或 poetry），优先使用 uv。如果两者都未安装，会提示错误并告知安装方法。
@@ -182,14 +188,20 @@ pre-commit run interrogate --all-files  # 检查文档覆盖率
 ### 多 Python 版本测试
 
 ```bash
-# 使用 tox 测试多个 Python 版本（3.10-3.13）
-tox
+# 测试所有 Python 版本（使用 Makefile）
+make tox
 
 # 测试特定版本
-tox -e py311
+make tox-e pyversion=py311
 
 # 查看可用环境
-tox list
+make tox-list
+
+# 直接使用 tox 命令
+tox                  # 测试所有版本
+tox -e py311         # 测试 Python 3.11
+tox list              # 查看环境列表
+tox -p                # 并行运行
 ```
 
 ## 文档
