@@ -52,3 +52,19 @@ configure-project: check-package-manager
 	elif [ -n "$(POETRY)" ]; then \
 		poetry run python scripts/configure_project.py; \
 	fi
+
+docs:
+	@if [ -n "$(UV)" ]; then \
+		uv run mkdocs serve; \
+	elif [ -n "$(POETRY)" ]; then \
+		poetry run mkdocs serve; \
+	fi
+
+docs-build:
+	@if [ -n "$(UV)" ]; then \
+		uv run mkdocs build; \
+	elif [ -n "$(POETRY)" ]; then \
+		poetry run mkdocs build; \
+	fi
+
+.PHONY: setup test report configure-project check-package-manager docs docs-build
