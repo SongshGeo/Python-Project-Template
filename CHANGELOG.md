@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.1](https://github.com/SongshGeo/Python-Project-Template/compare/v1.3.0...v1.3.1) (2025-12-28)
+
+
+### Documentation
+
+* **tech-stack:** :memo: Add initial tech stack documentation outlining development environment, tooling, quality gates, and testing harness ([5d6b62b](https://github.com/SongshGeo/Python-Project-Template/commit/5d6b62b13af2083df9ea81114b9cf067d35c8048))
+
 ## [1.3.0](https://github.com/SongshGeo/Python-Project-Template/compare/v1.2.0...v1.3.0) (2025-10-26)
 
 
