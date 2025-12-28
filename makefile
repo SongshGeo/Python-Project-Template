@@ -2,6 +2,9 @@
 GIT := $(shell command -v git 2> /dev/null)
 UV := $(shell command -v uv 2> /dev/null)
 POETRY := $(shell command -v poetry 2> /dev/null)
+# Control optional dependency groups (1 to enable, 0 to skip)
+DEV ?= 1
+DOCS ?= 0
 
 # 检查是否安装了包管理器
 check-package-manager:
@@ -21,9 +24,13 @@ check-package-manager:
 setup: check-package-manager
 	@echo "安装依赖..."
 	@if [ -n "$(UV)" ]; then \
-		uv sync --all-extras; \
+		uv sync \
+		$(if $(DEV),--extra dev,) \
+		$(if $(DOCS),--extra docs,); \
 	elif [ -n "$(POETRY)" ]; then \
-		poetry install; \
+		poetry install \
+		$(if $(DEV),--with dev,) \
+		$(if $(DOCS),--with docs,); \
 	fi
 	@echo "初始化项目..."
 	@make configure-project
