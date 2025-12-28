@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/SongshGeo/Python-Project-Template/compare/v1.3.1...v1.4.0) (2025-12-28)
+
+
+### Features
+
+* **cursor:** :sparkles: Add cursorignore file, keep file for plans, and define AI assistant coding rules in cursorrules.mdc ([50ff4f9](https://github.com/SongshGeo/Python-Project-Template/commit/50ff4f995b82f446633f6eba84188ea155eac37b))
+* **makefile:** :sparkles: Add support for optional dependency groups in setup process ([cd872c6](https://github.com/SongshGeo/Python-Project-Template/commit/cd872c65d44bf104cc128f8bcd22f1926e81c35b))
+
+
+### Documentation
+
+* **cache:** :memo: Add initial documentation files for architecture, progress, and project design ([8910233](https://github.com/SongshGeo/Python-Project-Template/commit/89102334074c7b2fe609dc28f67673d0786df1f3))
+
 ## [1.3.1](https://github.com/SongshGeo/Python-Project-Template/compare/v1.3.0...v1.3.1) (2025-12-28)
 
 
