@@ -1,0 +1,4 @@
+# Linux platform data source configuration
+# Purpose: Platform-specific settings for data sources/datasets on Linux.
+# Usage: This config is loaded when the 'ds: linux' group is selected in Hydra.
+#        Add Linux-specific data paths, connection strings, or dataset locations here.

@@ -1,3 +1,7 @@
+# Main Hydra configuration file
+# Purpose: Defines the default configuration composition for the application.
+# Usage: This file serves as the entry point for Hydra config management,
+#        composing platform-specific data source configs via the 'ds' group.
 defaults:
   - ds: mac
   - _self_

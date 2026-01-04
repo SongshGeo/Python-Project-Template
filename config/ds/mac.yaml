@@ -1,0 +1,4 @@
+# macOS platform data source configuration
+# Purpose: Platform-specific settings for data sources/datasets on macOS.
+# Usage: This config is loaded when the 'ds: mac' group is selected in Hydra.
+#        Add macOS-specific data paths, connection strings, or dataset locations here.
