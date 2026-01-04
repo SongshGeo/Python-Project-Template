@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/SongshGeo/Python-Project-Template/compare/v1.4.0...v1.5.0) (2026-01-04)
+
+
+### Features
+
+* **cursor:** :sparkles: Add new documentation files for architecture, model design, progress, and tech stack ([1c3ce46](https://github.com/SongshGeo/Python-Project-Template/commit/1c3ce469b75d2e03b5dc4ba28c08434779b233a8))
+* **i18n:** :sparkles: Implement gettext-based internationalization for project configuration script, adding support for English and Chinese translations ([10ca892](https://github.com/SongshGeo/Python-Project-Template/commit/10ca89249d6313993e9d56c48bac9093d6651390))
+
+
+### Documentation
+
+* **config:** :memo: Add platform-specific data source configurations for Linux, macOS, and Windows ([4c49090](https://github.com/SongshGeo/Python-Project-Template/commit/4c4909027b01f862cd1e1f6cac67bd180ea5391a))
+
 ## [1.4.0](https://github.com/SongshGeo/Python-Project-Template/compare/v1.3.1...v1.4.0) (2025-12-28)
 
 
