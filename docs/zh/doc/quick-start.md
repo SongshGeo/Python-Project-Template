@@ -1,5 +1,7 @@
 # 快速开始指南
 
+[中文](quick-start.md) | [English](https://songshgeo.github.io/project_template/en/doc/quick-start/)
+
 这是一个详细的快速开始指南，帮助您从零开始使用这个 Python 项目模板。
 
 ## 前提条件

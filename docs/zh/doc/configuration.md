@@ -1,5 +1,7 @@
 # 配置说明
 
+[中文](configuration.md) | [English](https://songshgeo.github.io/project_template/en/doc/configuration/)
+
 本模板包含多种配置文件，用于管理项目的各个方面。本章节详细说明各个配置文件的作用和配置方法。
 
 ## 主要配置文件

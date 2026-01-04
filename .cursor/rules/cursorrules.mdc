@@ -26,4 +26,5 @@ from _pytest.logging import LogCaptureFixture
 from _pytest.monkeypatch import MonkeyPatch
 from pytest_mock.plugin import MockerFixture
 
-Before you begin, carefully read all documents in ./cache/
+Before you begin, carefully read all documents in .cursor/cache/
+Avoid using "try...except" syntax to prevent exceptions from being silenced.

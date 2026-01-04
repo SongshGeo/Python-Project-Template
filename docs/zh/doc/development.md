@@ -1,5 +1,7 @@
 # 开发规范
 
+[中文](development.md) | [English](https://songshgeo.github.io/project_template/en/doc/development/)
+
 本文档说明项目的代码规范、开发流程和最佳实践。
 
 ## 代码风格

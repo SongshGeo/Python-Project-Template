@@ -1,0 +1,39 @@
+# English translations for project_template.
+# Copyright (C)
+# This file is distributed under the same license as the project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: project_template\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-04 00:00+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: English\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "✓ Updated pyproject.toml"
+msgstr "✓ Updated pyproject.toml"
+
+msgid "✓ Updated {path}"
+msgstr "✓ Updated {path}"
+
+msgid "! Warning: file not found {path}"
+msgstr "! Warning: file not found {path}"
+
+msgid "Starting project configuration..."
+msgstr "Starting project configuration..."
+
+msgid "Project name:"
+msgstr "Project name:"
+
+msgid "Project description:"
+msgstr "Project description:"
+
+msgid "\\n✨ Project configuration completed!"
+msgstr "\\n✨ Project configuration completed!"

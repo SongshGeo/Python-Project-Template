@@ -1,0 +1,4 @@
+# Windows platform data source configuration
+# Purpose: Platform-specific settings for data sources/datasets on Windows.
+# Usage: This config is loaded when the 'ds: win' group is selected in Hydra.
+#        Add Windows-specific data paths, connection strings, or dataset locations here.

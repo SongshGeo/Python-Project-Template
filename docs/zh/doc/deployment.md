@@ -1,5 +1,7 @@
 # 部署指南
 
+[中文](deployment.md) | [English](https://songshgeo.github.io/project_template/en/doc/deployment/)
+
 本文档说明如何构建、测试和部署 Python 项目。
 
 ## 本地构建

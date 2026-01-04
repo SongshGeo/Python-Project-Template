@@ -11,7 +11,7 @@ permissions:
   id-token: write
 
 jobs:
-  # 创建 release
+  # Create release
   release-please:
     runs-on: ubuntu-latest
     outputs:
@@ -24,7 +24,7 @@ jobs:
           release-type: python
           package-name: ${project_name}
 
-  # 发布到 pypi
+  # Publish to PyPI
   publish-pypi:
     needs: release-please
     runs-on: ubuntu-latest
@@ -49,17 +49,15 @@ jobs:
           uv build
           uv publish
 
-  # 打包源码, 上传到 release 中
+  # Package source and upload to release (optional)
   # build-and-attach-assets:
   #   needs: release-please
   #   runs-on: ubuntu-latest
   #   if: ${{ needs.release-please.outputs.release_created }}
   #   steps:
   #     - uses: actions/checkout@v3
-
   #     - name: Zip src folder
   #       run: zip -r src.zip src/
-
   #     - name: Upload Release Asset
   #       env:
   #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
