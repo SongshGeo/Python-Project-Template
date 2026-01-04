@@ -1,5 +1,7 @@
 # Python 项目模板
 
+[中文](index.md) | [English](https://songshgeo.github.io/project_template/en/)
+
 一个现代化的 Python 项目模板，集成了最佳实践和完整的开发工具链。
 
 !!! info "特性"

@@ -1,5 +1,7 @@
 # 工具链说明
 
+[中文](tools.md) | [English](https://songshgeo.github.io/project_template/en/doc/tools/)
+
 本模板集成了众多优秀的开发工具，以提高代码质量、开发效率和项目管理。本章节详细说明各个工具的作用和使用方法。
 
 ## 包管理

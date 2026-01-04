@@ -1,23 +1,23 @@
-site_name: Python Project Template
-site_description: A modern Python project template
+site_name: Python 项目模板
+site_description: 现代化的 Python 项目模板
 site_author: SongshGeo
-site_url: https://songshgeo.github.io/project_template/
-docs_dir: docs/en
-site_dir: site
+site_url: https://songshgeo.github.io/project_template/zh/
+docs_dir: docs/zh
+site_dir: site/zh
 
 repo_name: SongshGeo/project_template
 repo_url: https://github.com/SongshGeo/project_template
-edit_uri: edit/main/docs/en/
+edit_uri: edit/main/docs/zh/
 
 copyright: Copyright &copy; 2024 SongshGeo
 
 nav:
-  - Home: index.md
-  - Quick Start: doc/quick-start.md
-  - Tooling: doc/tools.md
-  - Configuration: doc/configuration.md
-  - Development: doc/development.md
-  - Deployment: doc/deployment.md
+  - 主页: index.md
+  - 快速开始: doc/quick-start.md
+  - 工具链: doc/tools.md
+  - 配置说明: doc/configuration.md
+  - 开发规范: doc/development.md
+  - 部署指南: doc/deployment.md
 
 theme:
   name: material
@@ -27,13 +27,13 @@ theme:
       accent: purple
       toggle:
         icon: material/brightness-7
-        name: Switch to dark mode
+        name: 切换到深色模式
     - scheme: slate
       primary: blue
       accent: purple
       toggle:
         icon: material/brightness-4
-        name: Switch to light mode
+        name: 切换到浅色模式
   features:
     - navigation.tabs
     - navigation.sections

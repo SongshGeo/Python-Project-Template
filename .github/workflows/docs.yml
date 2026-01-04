@@ -33,10 +33,11 @@ jobs:
           source $HOME/.cargo/env
           uv sync --all-extras
 
-      - name: Build documentation
+      - name: Build documentation (en + zh)
         run: |
           source $HOME/.cargo/env
-          uv run mkdocs build
+          uv run mkdocs build -f mkdocs.en.yml
+          uv run mkdocs build -f mkdocs.zh.yml
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
