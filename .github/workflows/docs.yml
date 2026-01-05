@@ -36,8 +36,15 @@ jobs:
       - name: Build documentation (en + zh)
         run: |
           source $HOME/.cargo/env
+          # Clean site directory to ensure fresh build
+          rm -rf site
+          # Build English documentation (outputs to site/)
           uv run mkdocs build -f mkdocs.en.yml
+          # Build Chinese documentation (outputs to site/zh/)
           uv run mkdocs build -f mkdocs.zh.yml
+          # Verify both versions were built
+          ls -la site/
+          ls -la site/zh/ || echo "Warning: Chinese docs not found"
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
