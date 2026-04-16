@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.1](https://github.com/SongshGeo/Python-Project-Template/compare/v1.5.0...v1.5.1) (2026-01-05)
+
+
+### Bug Fixes
+
+* **ci:** :bug: Update documentation build process to clean site directory, build English and Chinese versions, and verify outputs ([40f2abb](https://github.com/SongshGeo/Python-Project-Template/commit/40f2abb6232800a211833027ee77e9e826d0cf96))
+
 ## [1.5.0](https://github.com/SongshGeo/Python-Project-Template/compare/v1.4.0...v1.5.0) (2026-01-04)
 
 
