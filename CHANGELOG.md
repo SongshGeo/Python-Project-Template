@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/SongshGeo/Python-Project-Template/compare/v1.5.1...v1.6.0) (2026-07-02)
+
+
+### Features
+
+* adopt Claude Code workflow and switch to uv-only ([0498012](https://github.com/SongshGeo/Python-Project-Template/commit/0498012b25c647265ba4e0f5f235dfbc0f84bac2))
+
 ## [1.5.1](https://github.com/SongshGeo/Python-Project-Template/compare/v1.5.0...v1.5.1) (2026-01-05)
 
 
