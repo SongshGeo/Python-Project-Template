@@ -10,11 +10,9 @@
 
 - **Python 3.10-3.13**（推荐使用 3.11）
 - **Git**
-- **uv**（推荐）或 **poetry**
+- **uv**（本模板仅使用 uv）
 
-## 步骤 1：安装包管理器
-
-### 选项 A：使用 uv（推荐）
+## 步骤 1：安装 uv
 
 uv 是一个极快的 Python 包管理器，由 Rust 编写。
 
@@ -24,16 +22,6 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # 验证安装
 uv --version
-```
-
-### 选项 B：使用 poetry
-
-```bash
-# 安装 poetry
-pip install poetry
-
-# 验证安装
-poetry --version
 ```
 
 ## 步骤 2：创建新项目
@@ -70,7 +58,6 @@ python scripts/configure_project.py
 
 1. **更新 `pyproject.toml`**
    - 更新 `[project]` 段的 `name` 和 `description`
-   - 更新 `[tool.poetry]` 段的 `name` 和 `description`
 
 2. **更新 GitHub Workflow**
    - 更新 `.github/workflows/release-please.yml` 中的项目名称
@@ -93,9 +80,28 @@ $ make configure-project
 ✨ 项目配置已完成!
 ```
 
-## 步骤 4：安装依赖
+### 配合 Claude Code 使用
 
-### 使用 uv
+如果你使用 [Claude Code](https://claude.com/claude-code)，整个初始化流程可以交给一个
+skill 自动完成，而无需手动逐条运行命令：
+
+1. 从本模板创建你的项目，并用 Claude Code 打开。
+2. 运行 `setup-project` skill，它会：
+   - 配置项目名称和描述；
+   - 使用 `uv sync --all-extras` 安装依赖；
+   - 安装 pre-commit hooks；
+   - 执行 `npx skills@latest add SongshGeo/skills` 安装推荐的外部 skill；
+   - 初始化 `memory-bank/`；
+   - 运行测试套件以验证一切正常。
+
+已有一个用旧模板生成的老项目？运行 `upgrade-project` skill 即可将其迁移到新的
+uv-only + Claude Code 工作流。
+
+!!! tip "协作上下文中枢"
+    根目录的 `CLAUDE.md`（权威的编码规范与 skill 索引）与顶层的 `memory-bank/`
+    是与 Claude Code 协作的共享上下文中枢。
+
+## 步骤 4：安装依赖
 
 ```bash
 # 安装所有依赖（包括开发依赖和文档依赖）
@@ -103,13 +109,6 @@ uv sync --all-extras
 
 # 或只安装开发依赖
 uv sync --dev
-```
-
-### 使用 poetry
-
-```bash
-# 安装所有依赖
-poetry install
 ```
 
 安装完成后，依赖会被安装到虚拟环境中。
@@ -134,8 +133,6 @@ make test
 
 # 或直接运行
 uv run pytest
-# 或
-poetry run pytest
 ```
 
 查看测试报告：
@@ -187,41 +184,25 @@ def test_my_function():
 
 ### 添加新依赖
 
-使用 uv：
-
 ```bash
 # 添加运行时依赖
 uv add numpy pandas
 
 # 添加开发依赖
-uv add --dev pytest-cov
+uv add --optional dev pytest-cov
 
 # 添加文档依赖
-uv add --dev mkdocs
-```
-
-使用 poetry：
-
-```bash
-# 添加运行时依赖
-poetry add numpy pandas
-
-# 添加开发依赖
-poetry add --group dev pytest-cov
+uv add --optional docs mkdocs
 ```
 
 ### 运行代码
 
 ```bash
-# 使用 uv
+# 使用 uv 运行
 uv run python src/your_script.py
 
-# 使用 poetry
-poetry run python src/your_script.py
-
 # 或激活虚拟环境
-uv shell  # uv
-poetry shell  # poetry
+uv shell
 ```
 
 ## 步骤 8：代码质量检查
@@ -279,21 +260,18 @@ interrogate src/
 
 ## 常见问题
 
-### Q: 如何选择 uv 还是 poetry？
+### Q: 本模板使用哪个包管理器？
 
-A: uv 更快，是 Rust 编写。poetry 更成熟，社区支持更多。如果追求性能，选择 uv；如果追求稳定性，选择 poetry。本模板同时支持两者。
+A: 本模板仅使用 uv。uv 由 Rust 编写，速度极快，在一个工具中统一管理虚拟环境、依赖和打包。
 
 ### Q: 虚拟环境在哪里？
 
-A:
-- uv 默认使用 `.venv` 目录
-- poetry 默认使用独立的环境目录
+A: uv 默认使用 `.venv` 目录。
 
 查看虚拟环境位置：
 
 ```bash
-uv info  # uv
-poetry env info  # poetry
+uv info
 ```
 
 ### Q: 如何添加 Python 版本测试？

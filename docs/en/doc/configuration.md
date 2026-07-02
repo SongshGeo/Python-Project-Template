@@ -27,21 +27,8 @@ dev = ["pytest>=7.0.0", "black>=23.0.0"]
 docs = ["mkdocs>=1.4.0"]
 ```
 
-#### [tool.poetry] (poetry compatibility)
-
-```toml
-[tool.poetry]
-name = "project-name"
-version = "1.0.0"
-description = "Project description"
-
-[tool.poetry.dependencies]
-python = ">=3.10,<3.14"
-package1 = ">=1.0.0"
-
-[tool.poetry.group.dev.dependencies]
-pytest = ">=7.0.0"
-```
+This template is uv-only. Dependencies live under `[project]` and
+`[project.optional-dependencies]`; manage them with `uv add` / `uv add --optional <group>`.
 
 #### Tool configs
 
@@ -179,28 +166,28 @@ PyPI secret: `PYPI_TOKEN`.
 ## Project-specific Config
 
 ### config/config.yaml
-Application config (e.g., Hydra).
+The Hydra main configuration. It is a small entry point (about six lines) that
+composes platform-specific data source configs via the `ds` config group:
 
 ```yaml
-database:
-  host: localhost
-  port: 5432
-  name: myapp
-
-api:
-  host: 0.0.0.0
-  port: 8000
-  debug: false
-
-logging:
-  level: INFO
-  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+defaults:
+  - ds: mac
+  - _self_
 ```
 
+`defaults` selects which `ds` config to load (`mac` by default) and `_self_`
+lets this file override composed values. Change `ds: mac` to `ds: linux` or
+`ds: win` to load a different platform's data source config.
+
 ### config/ds/
-Dataset-specific configs:
+The `ds` config group holds platform-specific data source configurations:
+- `linux.yaml`
 - `mac.yaml`
 - `win.yaml`
+
+Out of the box these are placeholder files containing only explanatory comments.
+Add your platform-specific data paths, connection strings, or dataset locations
+to the relevant file.
 
 ## Environment Variables
 
@@ -272,9 +259,6 @@ line-length = 100
 ```toml
 [project]
 requires-python = ">=3.11,<3.14"
-
-[tool.poetry.dependencies]
-python = ">=3.11,<3.14"
 ```
 
 ### Update coverage threshold
@@ -307,7 +291,6 @@ Edit `pyproject.toml`, then:
 
 ```bash
 uv lock
-poetry lock
 ```
 
 ### Ignore files/dirs?

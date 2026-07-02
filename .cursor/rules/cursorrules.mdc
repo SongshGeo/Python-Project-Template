@@ -26,5 +26,11 @@ from _pytest.logging import LogCaptureFixture
 from _pytest.monkeypatch import MonkeyPatch
 from pytest_mock.plugin import MockerFixture
 
-Before you begin, carefully read all documents in .cursor/cache/
+Before you begin, carefully read all documents in the top-level `memory-bank/`
+(the shared memory bank used by both Cursor and Claude Code). Keep those
+documents up to date as the project evolves.
 Avoid using "try...except" syntax to prevent exceptions from being silenced.
+
+Note: these rules are kept in sync with the repository's `CLAUDE.md`, which is
+the authoritative source for coding standards and the skill/workflow index. If
+the two ever diverge, `CLAUDE.md` wins.

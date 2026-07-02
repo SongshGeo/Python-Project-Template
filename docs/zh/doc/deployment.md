@@ -9,11 +9,7 @@
 ### 安装依赖
 
 ```bash
-# 使用 uv
 uv sync --all-extras
-
-# 使用 poetry
-poetry install
 ```
 
 ### 运行测试
@@ -52,21 +48,9 @@ interrogate src/
 
 ## 构建包
 
-### 使用 uv 构建
-
 ```bash
 # 构建 Wheel 和 Source Distribution
 uv build
-
-# 输出目录
-ls dist/
-```
-
-### 使用 poetry 构建
-
-```bash
-# 构建包
-poetry build
 
 # 输出目录
 ls dist/
@@ -142,19 +126,6 @@ uv publish --token YOUR_PYPI_TOKEN
 
 # 发布到 TestPyPI（测试）
 uv publish --publish-url https://test.pypi.org/legacy/
-```
-
-#### 使用 poetry
-
-```bash
-# 配置 PyPI token
-poetry config pypi-token.pypi YOUR_PYPI_TOKEN
-
-# 发布
-poetry publish
-
-# 发布到 TestPyPI
-poetry publish --repository testpypi
 ```
 
 #### 使用 twine

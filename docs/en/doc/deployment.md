@@ -9,11 +9,7 @@ How to build, test, and ship the project.
 ### Install dependencies
 
 ```bash
-# uv
 uv sync --all-extras
-
-# poetry
-poetry install
 ```
 
 ### Run tests
@@ -38,17 +34,8 @@ interrogate src/
 
 ## Build Packages
 
-### With uv
-
 ```bash
 uv build            # wheel + sdist
-ls dist/
-```
-
-### With poetry
-
-```bash
-poetry build
 ls dist/
 ```
 
@@ -99,13 +86,6 @@ Triggered by `.github/workflows/release-please.yml` when a release is created.
 uv build
 uv publish --token YOUR_PYPI_TOKEN
 uv publish --publish-url https://test.pypi.org/legacy/   # TestPyPI
-```
-
-#### poetry
-```bash
-poetry config pypi-token.pypi YOUR_PYPI_TOKEN
-poetry publish
-poetry publish --repository testpypi
 ```
 
 #### twine

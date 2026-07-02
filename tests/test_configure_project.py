@@ -83,12 +83,28 @@ class TestMain:
         # Setup
         mock_questionary.text.return_value.ask.return_value = "test-project"
 
-        # Run
-        main()
+        # Run - no CLI args -> interactive prompts
+        main(argv=[])
 
         # Assert
         mock_configure.assert_called_once()
         mock_setup.assert_called_once()
+
+    @patch("scripts.configure_project.setup_description_files")
+    @patch("scripts.configure_project.configure_files")
+    @patch("scripts.configure_project.questionary")
+    @patch("scripts.configure_project.print")
+    def test_main_non_interactive(
+        self, mock_print, mock_questionary, mock_configure, mock_setup
+    ):
+        """Test that --name/--description skip the interactive prompts."""
+        # Run - both args supplied -> non-interactive
+        main(argv=["--name", "my-project", "--description", "A demo"])
+
+        # Assert - workers called with the passed values, no prompt shown
+        mock_configure.assert_called_once_with("my-project", "A demo")
+        mock_setup.assert_called_once_with("my-project", "A demo")
+        mock_questionary.text.assert_not_called()
 
 
 if __name__ == "__main__":

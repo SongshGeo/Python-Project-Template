@@ -8,11 +8,9 @@ A step-by-step guide to get productive with this Python project template.
 
 - **Python 3.10-3.13** (3.11 recommended)
 - **Git**
-- **uv** (recommended) or **poetry**
+- **uv** (this template is uv-only)
 
-## Step 1: Install a package manager
-
-### Option A: uv (recommended)
+## Step 1: Install uv
 
 uv is a blazing-fast Python package manager written in Rust.
 
@@ -22,13 +20,6 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Verify
 uv --version
-```
-
-### Option B: poetry
-
-```bash
-pip install poetry
-poetry --version
 ```
 
 ## Step 2: Create a new project
@@ -56,7 +47,7 @@ The script asks for:
 - **Project description** (e.g., `An awesome Python project`)
 
 What it does:
-1. Update `pyproject.toml` `[project]` and `[tool.poetry]`
+1. Update `pyproject.toml` `[project]`
 2. Update `.github/workflows/release-please.yml`
 3. Create `README.md`
 4. Clear `CHANGELOG.md`
@@ -72,9 +63,29 @@ Project description: An awesome Python project
 ✨ Project configuration completed!
 ```
 
-## Step 4: Install dependencies
+### With Claude Code
 
-### With uv
+If you use [Claude Code](https://claude.com/claude-code), the whole bootstrap can be
+driven by a skill instead of running the commands by hand:
+
+1. Create your project from this template and open it in Claude Code.
+2. Run the `setup-project` skill. It will:
+   - configure the project name and description;
+   - install dependencies with `uv sync --all-extras`;
+   - install the pre-commit hooks;
+   - run `npx skills@latest add SongshGeo/skills` to install the recommended
+     external skills;
+   - initialize the `memory-bank/`;
+   - run the test suite to verify everything works.
+
+Already have an older project generated from this template? Run the
+`upgrade-project` skill to migrate it to the new uv-only + Claude Code workflow.
+
+!!! tip "Collaboration context hub"
+    The root `CLAUDE.md` (authoritative coding standards and skill index) and the
+    top-level `memory-bank/` are the shared context hub for working with Claude Code.
+
+## Step 4: Install dependencies
 
 ```bash
 # All extras (dev + docs)
@@ -82,12 +93,6 @@ uv sync --all-extras
 
 # Dev only
 uv sync --dev
-```
-
-### With poetry
-
-```bash
-poetry install
 ```
 
 ## Step 5: Set up Git hooks
@@ -105,7 +110,6 @@ make test
 
 # Or directly
 uv run pytest
-poetry run pytest
 ```
 
 Test report:
@@ -158,30 +162,19 @@ def test_my_function():
 
 ### Add dependencies
 
-Using uv:
-
 ```bash
-uv add numpy pandas          # runtime deps
-uv add --dev pytest-cov      # dev deps
-uv add --dev mkdocs          # docs deps
-```
-
-Using poetry:
-
-```bash
-poetry add numpy pandas
-poetry add --group dev pytest-cov
+uv add numpy pandas                # runtime deps
+uv add --optional dev pytest-cov   # dev deps
+uv add --optional docs mkdocs      # docs deps
 ```
 
 ### Run code
 
 ```bash
 uv run python src/your_script.py
-poetry run python src/your_script.py
 
 # Or activate virtual env
 uv shell
-poetry shell
 ```
 
 ## Step 8: Code quality
@@ -222,18 +215,17 @@ interrogate src/
 
 ## FAQ
 
-### uv or poetry?
-uv is faster (Rust). poetry is mature. The template supports both.
+### Which package manager does the template use?
+This template uses uv exclusively. uv is a blazing-fast (Rust) manager that handles
+environments, dependencies, and packaging in a single tool.
 
 ### Where is the virtualenv?
-- uv: `.venv` by default
-- poetry: manages its own venv
+uv creates `.venv` by default.
 
 Check paths:
 
 ```bash
 uv info
-poetry env info
 ```
 
 ### Add more Python versions?

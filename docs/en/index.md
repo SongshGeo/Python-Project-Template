@@ -5,7 +5,7 @@
 A modern Python project template with a full toolchain and best practices baked in.
 
 !!! info "Highlights"
-    - 🚀 Package management with `uv` (or `poetry`)
+    - 🚀 Package management with `uv`
     - 🧪 Testing with `pytest`, multi-version with `tox`
     - 📊 Beautiful reports via `allure`
     - 🔧 Code quality enforced by `pre-commit`
@@ -64,9 +64,8 @@ pre-commit run --all-files
 
 ## Core Capabilities
 
-### Package managers
-- **uv** (recommended): extremely fast
-- **poetry** (alternative): mature ecosystem
+### Package manager
+- **uv**: extremely fast; this template is uv-only
 
 ### Code quality
 - Black: formatting
@@ -97,7 +96,7 @@ pre-commit run --all-files
 
 | Feature        | Tool              | Notes                          |
 |----------------|-------------------|--------------------------------|
-| Package mgmt   | uv, poetry        | Modern dependency management   |
+| Package mgmt   | uv                | Modern dependency management   |
 | Formatting     | Black, Ruff       | Consistent style               |
 | Linting        | Ruff, Flake8, MyPy| Multi-layer quality            |
 | Testing        | Pytest, Tox       | Comprehensive coverage         |
