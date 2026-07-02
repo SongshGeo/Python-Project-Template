@@ -2,6 +2,72 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.1](https://github.com/SongshGeo/Python-Project-Template/compare/v1.5.0...v1.5.1) (2026-01-05)
+
+
+### Bug Fixes
+
+* **ci:** :bug: Update documentation build process to clean site directory, build English and Chinese versions, and verify outputs ([40f2abb](https://github.com/SongshGeo/Python-Project-Template/commit/40f2abb6232800a211833027ee77e9e826d0cf96))
+
+## [1.5.0](https://github.com/SongshGeo/Python-Project-Template/compare/v1.4.0...v1.5.0) (2026-01-04)
+
+
+### Features
+
+* **cursor:** :sparkles: Add new documentation files for architecture, model design, progress, and tech stack ([1c3ce46](https://github.com/SongshGeo/Python-Project-Template/commit/1c3ce469b75d2e03b5dc4ba28c08434779b233a8))
+* **i18n:** :sparkles: Implement gettext-based internationalization for project configuration script, adding support for English and Chinese translations ([10ca892](https://github.com/SongshGeo/Python-Project-Template/commit/10ca89249d6313993e9d56c48bac9093d6651390))
+
+
+### Documentation
+
+* **config:** :memo: Add platform-specific data source configurations for Linux, macOS, and Windows ([4c49090](https://github.com/SongshGeo/Python-Project-Template/commit/4c4909027b01f862cd1e1f6cac67bd180ea5391a))
+
+## [1.4.0](https://github.com/SongshGeo/Python-Project-Template/compare/v1.3.1...v1.4.0) (2025-12-28)
+
+
+### Features
+
+* **cursor:** :sparkles: Add cursorignore file, keep file for plans, and define AI assistant coding rules in cursorrules.mdc ([50ff4f9](https://github.com/SongshGeo/Python-Project-Template/commit/50ff4f995b82f446633f6eba84188ea155eac37b))
+* **makefile:** :sparkles: Add support for optional dependency groups in setup process ([cd872c6](https://github.com/SongshGeo/Python-Project-Template/commit/cd872c65d44bf104cc128f8bcd22f1926e81c35b))
+
+
+### Documentation
+
+* **cache:** :memo: Add initial documentation files for architecture, progress, and project design ([8910233](https://github.com/SongshGeo/Python-Project-Template/commit/89102334074c7b2fe609dc28f67673d0786df1f3))
+
+## [1.3.1](https://github.com/SongshGeo/Python-Project-Template/compare/v1.3.0...v1.3.1) (2025-12-28)
+
+
+### Documentation
+
+* **tech-stack:** :memo: Add initial tech stack documentation outlining development environment, tooling, quality gates, and testing harness ([5d6b62b](https://github.com/SongshGeo/Python-Project-Template/commit/5d6b62b13af2083df9ea81114b9cf067d35c8048))
+
+## [1.3.0](https://github.com/SongshGeo/Python-Project-Template/compare/v1.2.0...v1.3.0) (2025-10-26)
+
+
+### Features
+
+* **makefile:** :sparkles: Add multi-version testing support with tox and update README instructions ([f68f78b](https://github.com/SongshGeo/Python-Project-Template/commit/f68f78b812997062d7b8000adc78b95b3b60e7dc))
+* **project:** :sparkles: Enhance project setup with uv and poetry support, update README and configuration scripts ([2ac0e5a](https://github.com/SongshGeo/Python-Project-Template/commit/2ac0e5a7844bb27b359f4b2d46ce41cdb49902e5))
+
+
+### Documentation
+
+* **docs:** :memo: Add comprehensive documentation including quick start guide, configuration details, and deployment instructions ([e58ef08](https://github.com/SongshGeo/Python-Project-Template/commit/e58ef08f622a5b4f9fa7a269461301f69403f27f))
+
+## [1.2.0](https://github.com/SongshGeo/Python-Project-Template/compare/v1.1.0...v1.2.0) (2025-02-14)
+
+
+### Features
+
+* :sparkles: include a github sponsor workflow ([fe69410](https://github.com/SongshGeo/Python-Project-Template/commit/fe694102b43883baf14a108f4703ea60094fc73c))
+* :sparkles: 自动 setup 新项目 ([e350678](https://github.com/SongshGeo/Python-Project-Template/commit/e350678576c5de4743dcf98ecf43e7092fc2aa08))
+
+
+### Bug Fixes
+
+* :bug: Fix release please to update python package version ([04c6248](https://github.com/SongshGeo/Python-Project-Template/commit/04c624831786ba9a733e3a85b5fc9b198d7e2a1c))
+
 ## [1.1.0](https://github.com/SongshGeo/Python-Project-Template/compare/v1.0.1...v1.1.0) (2024-12-07)
 
 
