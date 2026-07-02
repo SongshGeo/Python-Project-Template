@@ -4,6 +4,12 @@
 
 Coding standards, workflow, and best practices for this template.
 
+!!! note "Source of truth for Claude Code"
+    The root `CLAUDE.md` is the authoritative coding standards and skill index for
+    this project — start there. The top-level `memory-bank/` drives a
+    plan → architect → progress loop: read it before you start, and update it when
+    you finish so the context stays current for the next session.
+
 ## Code Style
 
 ### Python style

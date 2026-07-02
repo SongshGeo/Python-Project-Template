@@ -1,7 +1,6 @@
 # Detect required commands
 GIT := $(shell command -v git 2> /dev/null)
 UV := $(shell command -v uv 2> /dev/null)
-POETRY := $(shell command -v poetry 2> /dev/null)
 # Control optional dependency groups (1 to enable, 0 to skip)
 DEV ?= 1
 DOCS ?= 0
@@ -21,11 +20,9 @@ endif
 LANG_CODE := $(LANG)
 
 ifeq ($(LANG_CODE),zh)
-  MSG_PKG_MGR_NOT_FOUND = 错误: 未找到 uv 或 poetry，请先安装其中一个：
+  MSG_UV_NOT_FOUND = 错误: 未找到 uv，请先安装：
   MSG_INSTALL_UV =   - uv:   curl -LsSf https://astral.sh/uv/install.sh | sh
-  MSG_INSTALL_POETRY =   - poetry: pip install poetry
   MSG_USING_UV = 使用 uv 作为包管理器
-  MSG_USING_POETRY = 使用 poetry 作为包管理器
   MSG_INSTALL_DEPS = 安装依赖...
   MSG_INIT_PROJECT = 初始化项目...
   MSG_RUN_TESTS = 运行测试...
@@ -34,11 +31,9 @@ ifeq ($(LANG_CODE),zh)
   MSG_TOX_E = 运行特定版本的测试（用法: make tox-e pyversion=py311）...
   MSG_TOX_E_MISSING = 错误: 请指定版本，例如: make tox-e pyversion=py311
 else
-  MSG_PKG_MGR_NOT_FOUND = Error: uv or poetry not found. Please install one:
+  MSG_UV_NOT_FOUND = Error: uv not found. Please install it:
   MSG_INSTALL_UV =   - uv:   curl -LsSf https://astral.sh/uv/install.sh | sh
-  MSG_INSTALL_POETRY =   - poetry: pip install poetry
   MSG_USING_UV = Using uv as package manager
-  MSG_USING_POETRY = Using poetry as package manager
   MSG_INSTALL_DEPS = Installing dependencies...
   MSG_INIT_PROJECT = Initializing project...
   MSG_RUN_TESTS = Running tests...
@@ -48,89 +43,47 @@ else
   MSG_TOX_E_MISSING = Error: please specify a version, e.g., make tox-e pyversion=py311
 endif
 
-# Check for package manager
+# Check that uv is available
 check-package-manager:
-	@if [ -z "$(UV)" ] && [ -z "$(POETRY)" ]; then \
-		echo "$(MSG_PKG_MGR_NOT_FOUND)"; \
+	@if [ -z "$(UV)" ]; then \
+		echo "$(MSG_UV_NOT_FOUND)"; \
 		echo "$(MSG_INSTALL_UV)"; \
-		echo "$(MSG_INSTALL_POETRY)"; \
 		exit 1; \
 	fi
-	@if [ -n "$(UV)" ]; then \
-		echo "$(MSG_USING_UV)"; \
-	elif [ -n "$(POETRY)" ]; then \
-		echo "$(MSG_USING_POETRY)"; \
-	fi
+	@echo "$(MSG_USING_UV)"
 
 # Install dependencies and configure project
 setup: check-package-manager
 	@echo "$(MSG_INSTALL_DEPS)"
-	@if [ -n "$(UV)" ]; then \
-		env -u VIRTUAL_ENV uv sync --no-install-project \
+	@env -u VIRTUAL_ENV uv sync --no-install-project \
 		$(if $(DEV),--extra dev,) \
-		$(if $(DOCS),--extra docs,); \
-	elif [ -n "$(POETRY)" ]; then \
-		env -u VIRTUAL_ENV poetry install --no-root \
-		$(if $(DEV),--with dev,) \
-		$(if $(DOCS),--with docs,); \
-	fi
+		$(if $(DOCS),--extra docs,)
 	@echo "$(MSG_INIT_PROJECT)"
 	@make configure-project
 
-.PHONY: setup test report configure-project check-package-manager
-
-# 如果测试命令不存在，则跳过测试
 test: check-package-manager
 	@echo "$(MSG_RUN_TESTS)"
-	@if [ -n "$(UV)" ]; then \
-		env -u VIRTUAL_ENV uv run pytest; \
-	elif [ -n "$(POETRY)" ]; then \
-		env -u VIRTUAL_ENV poetry run pytest; \
-	fi
+	@env -u VIRTUAL_ENV uv run pytest
 
 report:
-	@if [ -n "$(UV)" ]; then \
-		env -u VIRTUAL_ENV uv run allure serve tmp/allure_results; \
-	elif [ -n "$(POETRY)" ]; then \
-		env -u VIRTUAL_ENV poetry run allure serve tmp/allure_results; \
-	fi
+	@env -u VIRTUAL_ENV uv run allure serve tmp/allure_results
 
 configure-project: check-package-manager
-	@if [ -n "$(UV)" ]; then \
-		env -u VIRTUAL_ENV uv run python scripts/configure_project.py; \
-	elif [ -n "$(POETRY)" ]; then \
-		env -u VIRTUAL_ENV poetry run python scripts/configure_project.py; \
-	fi
+	@env -u VIRTUAL_ENV uv run python scripts/configure_project.py
 
 docs:
-	@if [ -n "$(UV)" ]; then \
-		env -u VIRTUAL_ENV uv run mkdocs serve; \
-	elif [ -n "$(POETRY)" ]; then \
-		env -u VIRTUAL_ENV poetry run mkdocs serve; \
-	fi
+	@env -u VIRTUAL_ENV uv run mkdocs serve
 
 docs-build:
-	@if [ -n "$(UV)" ]; then \
-		env -u VIRTUAL_ENV uv run mkdocs build; \
-	elif [ -n "$(POETRY)" ]; then \
-		env -u VIRTUAL_ENV poetry run mkdocs build; \
-	fi
+	@env -u VIRTUAL_ENV uv run mkdocs build
 
 tox:
 	@echo "$(MSG_TOX_ALL)"
-	@if [ -n "$(UV)" ]; then \
-		env -u VIRTUAL_ENV uv run tox; \
-	elif [ -n "$(POETRY)" ]; then \
-		env -u VIRTUAL_ENV poetry run tox; \
-	fi
+	@env -u VIRTUAL_ENV uv run tox
 
 tox-list:
 	@echo "$(MSG_TOX_LIST)"
-	@if [ -n "$(UV)" ]; then \
-		env -u VIRTUAL_ENV uv run tox list; \
-	elif [ -n "$(POETRY)" ]; then \
-		env -u VIRTUAL_ENV poetry run tox list; \
-	fi
+	@env -u VIRTUAL_ENV uv run tox list
 
 tox-e:
 	@echo "$(MSG_TOX_E)"
@@ -138,10 +91,6 @@ tox-e:
 		echo "$(MSG_TOX_E_MISSING)"; \
 		exit 1; \
 	fi
-	@if [ -n "$(UV)" ]; then \
-		env -u VIRTUAL_ENV uv run tox -e $(pyversion); \
-	elif [ -n "$(POETRY)" ]; then \
-		env -u VIRTUAL_ENV poetry run tox -e $(pyversion); \
-	fi
+	@env -u VIRTUAL_ENV uv run tox -e $(pyversion)
 
 .PHONY: setup test report configure-project check-package-manager docs docs-build tox tox-list tox-e

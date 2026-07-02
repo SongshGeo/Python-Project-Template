@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(uv:*)",
+      "Bash(uv run:*)",
+      "Bash(make:*)",
+      "Bash(pytest:*)",
+      "Bash(pre-commit:*)",
+      "Bash(mkdocs:*)",
+      "Bash(tox:*)",
+      "Bash(interrogate:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git add:*)",
+      "Bash(git log:*)"
+    ]
+  }
+}

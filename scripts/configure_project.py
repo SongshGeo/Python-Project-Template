@@ -19,9 +19,9 @@ Examples:
     $ make configure-project
 """
 
+import argparse
 import gettext
 import os
-import re
 from pathlib import Path
 
 import questionary
@@ -66,8 +66,8 @@ def configure_files(project_name: str, project_description: str) -> None:
     Configure project information in configuration files.
 
     This function updates the project name and description in various
-    configuration files including pyproject.toml (both [project] and
-    [tool.poetry] sections) and GitHub workflow files.
+    configuration files including pyproject.toml ([project] section) and
+    GitHub workflow files.
 
     Args:
         project_name: The name of the project to set
@@ -98,20 +98,6 @@ def configure_files(project_name: str, project_description: str) -> None:
         content = content.replace('name = "songshgeo"', 'name = "' + project_name + '"')
         content = content.replace(
             'description = "Template"', 'description = "' + project_description + '"'
-        )
-
-        # Update [tool.poetry] name and description
-        content = re.sub(
-            r'(name = "songshgeo")',
-            'name = "' + project_name + '"',
-            content,
-            flags=re.MULTILINE,
-        )
-        content = re.sub(
-            r'(description = "Template")',
-            'description = "' + project_description + '"',
-            content,
-            flags=re.MULTILINE,
         )
 
         pyproject_path.write_text(content, encoding="utf-8")
@@ -154,36 +140,68 @@ def setup_description_files(title: str, description: str) -> None:
     )
 
 
-def main() -> None:
+def parse_args(argv: "list[str] | None" = None) -> argparse.Namespace:
+    """
+    Parse command-line arguments for the configuration script.
+
+    Args:
+        argv: Optional argument list (defaults to ``sys.argv`` when ``None``).
+
+    Returns:
+        The parsed namespace with ``name`` and ``description`` attributes.
+    """
+    parser = argparse.ArgumentParser(
+        description=_("Configure project metadata (name, description)."),
+    )
+    parser.add_argument("--name", default=None, help=_("Project name"))
+    parser.add_argument("--description", default=None, help=_("Project description"))
+    return parser.parse_args(argv)
+
+
+def main(argv: "list[str] | None" = None) -> None:
     """
     Main entry point for the project configuration script.
 
+    When ``--name`` and ``--description`` are both supplied the script runs
+    non-interactively (used by the ``setup-project`` Claude Code skill and by
+    CI); otherwise it falls back to interactive ``questionary`` prompts.
+
     Flow:
-        1. Prompt for project name and description
-        2. Update pyproject.toml in both [project] and [tool.poetry] sections
+        1. Resolve project name and description (from args or prompts)
+        2. Update the [project] section of pyproject.toml
         3. Update GitHub workflow files
         4. Create/update README.md
         5. Clear CHANGELOG.md
 
     Example:
-        $ python scripts/configure_project.py
-        Project name: my-project
-        Project description: A sample project
+        $ python scripts/configure_project.py --name my-project \\
+            --description "A sample project"
         ✓ Updated pyproject.toml
         ✓ Updated .github/workflows/release-please.yml
         ✨ Project configuration completed!
     """
+    args = parse_args(argv)
     print(_("Starting project configuration..."))
 
-    project_name = questionary.text(
-        _("Project name:"),
-        validate=lambda text: len(text) > 0,
-    ).ask()
+    if args.name and args.description:
+        project_name = args.name
+        project_description = args.description
+    else:
+        project_name = (
+            args.name
+            or questionary.text(
+                _("Project name:"),
+                validate=lambda text: len(text) > 0,
+            ).ask()
+        )
 
-    project_description = questionary.text(
-        _("Project description:"),
-        validate=lambda text: len(text) > 0,
-    ).ask()
+        project_description = (
+            args.description
+            or questionary.text(
+                _("Project description:"),
+                validate=lambda text: len(text) > 0,
+            ).ask()
+        )
 
     configure_files(project_name, project_description)
     setup_description_files(project_name, project_description)

@@ -6,7 +6,10 @@ This template bundles a rich toolchain for quality, productivity, and release au
 
 ## Package Management
 
-### uv (recommended)
+### uv
+
+This template uses uv exclusively for package management.
+
 - Very fast installs (10–100x faster than pip)
 - Manages envs, deps, and packages in one tool
 - Rust-based by astral-sh; PyPI compatible
@@ -14,28 +17,14 @@ This template bundles a rich toolchain for quality, productivity, and release au
 Common commands:
 
 ```bash
-uv sync --all-extras          # install deps
-uv add package-name           # add runtime dep
-uv add --dev package-name     # add dev dep
-uv remove package-name        # remove dep
-uv run python script.py       # run commands
+uv sync --all-extras              # install deps
+uv add package-name               # add runtime dep
+uv add --optional dev package-name # add dev dep
+uv remove package-name            # remove dep
+uv run python script.py           # run commands
 uv run pytest
-uv tree                       # dependency tree
-uv pip compile pyproject.toml # export requirements
-```
-
-### poetry (alternative)
-- Mature ecosystem and plugins
-- Strong version management
-
-```bash
-poetry install
-poetry add package-name
-poetry add --group dev package-name
-poetry remove package-name
-poetry update
-poetry run python script.py
-poetry run pytest
+uv tree                           # dependency tree
+uv pip compile pyproject.toml     # export requirements
 ```
 
 ## Code Quality

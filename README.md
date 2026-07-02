@@ -6,14 +6,11 @@ A modern Python project template with batteries included: tooling, docs, tests, 
 
 ## Quick Start
 
-### 1) Install uv (recommended) or poetry
+### 1) Install uv
 
 ```bash
-# Install uv (recommended, faster)
+# Install uv (fast, modern)
 curl -LsSf https://astral.sh/uv/install.sh | sh
-
-# Or install poetry
-pip install poetry
 ```
 
 ### 2) Create a new project
@@ -33,7 +30,7 @@ python scripts/configure_project.py
 ```
 
 **What the config script does**
-- Update `[project]` and `[tool.poetry]` in `pyproject.toml`
+- Update `[project]` in `pyproject.toml`
 - Update GitHub workflow config
 - Create/update `README.md`
 - Clear `CHANGELOG.md`
@@ -45,9 +42,7 @@ python scripts/configure_project.py
 ### Optional: install dependencies only
 
 ```bash
-uv sync --all-extras  # using uv
-# or
-poetry install        # using poetry
+uv sync --all-extras
 ```
 
 ### 3) Develop
@@ -62,6 +57,25 @@ make report
 # Run pre-commit checks
 pre-commit run --all-files
 ```
+
+## Use with Claude Code
+
+This template ships with a Claude Code workflow so you can configure and drive a
+project through **skills** instead of memorizing commands.
+
+1. Apply/clone the template and open the folder in Claude Code.
+2. Run the **`setup-project`** skill — it collects the project name/description,
+   installs dependencies, sets up pre-commit, installs the recommended external
+   skills (`npx skills@latest add SongshGeo/skills`), and initializes the shared
+   memory bank.
+3. For an **existing** project built from an older version of this template, run
+   the **`upgrade-project`** skill instead (idempotent migration).
+
+Coding standards and the skill index live in [`CLAUDE.md`](CLAUDE.md); the
+persistent plan → architect → progress context lives in
+[`memory-bank/`](memory-bank/). See
+[`.claude/recommended-skills.md`](.claude/recommended-skills.md) for the external
+skills. Cursor users share the same `memory-bank/` via `.cursor/rules/`.
 
 ## Project Structure
 
@@ -81,7 +95,7 @@ pre-commit run --all-files
 ├── examples/               # Examples
 ├── scripts/                # Utility scripts
 │   └── configure_project.py
-├── pyproject.toml          # Project config (uv/poetry)
+├── pyproject.toml          # Project config (uv, PEP 621)
 ├── tox.ini                 # Multi-Python testing
 ├── makefile                # Make shortcuts
 └── README.md               # This file
@@ -96,7 +110,7 @@ pre-commit run --all-files
 5. nbstripout for notebooks (keep outputs)
 6. pre-commit for linting
 7. mkdocs for docs
-8. uv package manager (poetry compatible)
+8. uv package manager
 9. interrogate doc coverage
 10. Jupyter for analysis
 11. snakeviz profiling
@@ -115,7 +129,7 @@ pre-commit run --all-files
 ### Dev workflow
 
 ```bash
-# Install all deps (auto-detect uv or poetry)
+# Install all deps
 make setup
 
 # Run tests
@@ -134,7 +148,7 @@ make configure-project
 make docs
 ```
 
-**Note:** The Makefile auto-detects uv first, then poetry. If neither is installed, it prints install hints.
+**Note:** The Makefile uses uv. If uv isn't installed, it prints an install hint.
 
 ### Using uv (recommended)
 
@@ -152,20 +166,7 @@ uv run python your_script.py
 uv add package-name
 
 # Add a dev dependency
-uv add --dev package-name
-```
-
-### Using poetry (alternative)
-
-```bash
-# Install deps
-poetry install
-
-# Run tests
-poetry run pytest
-
-# Add a dependency
-poetry add package-name
+uv add --optional dev package-name
 ```
 
 ### Code quality
@@ -215,7 +216,6 @@ make docs
 
 # Or run directly
 uv run mkdocs serve
-poetry run mkdocs serve  # via poetry
 ```
 
 Open `http://127.0.0.1:8000`.
@@ -247,9 +247,6 @@ Docs are deployed by GitHub Actions:
 - 🚀 [Deployment](docs/en/doc/deployment.md) - release process
 
 ## FAQ
-
-### Q: uv or poetry?
-A: uv is faster and modern; poetry is mature. Choose based on preference.
 
 ### Q: How to start a new project?
 A: Run `make setup` to configure and install deps.

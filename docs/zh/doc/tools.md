@@ -6,7 +6,9 @@
 
 ## 包管理
 
-### uv（推荐）
+### uv
+
+本模板仅使用 uv 进行包管理。
 
 **为什么选择 uv？**
 - 极快的安装速度（比 pip 快 10-100 倍）
@@ -22,7 +24,7 @@ uv sync --all-extras
 
 # 添加依赖
 uv add package-name
-uv add --dev package-name
+uv add --optional dev package-name
 
 # 移除依赖
 uv remove package-name
@@ -36,34 +38,6 @@ uv tree
 
 # 导出 requirements.txt
 uv pip compile pyproject.toml
-```
-
-### poetry（备选）
-
-**为什么保留 poetry？**
-- 成熟的工具，社区支持广泛
-- 更好的版本控制
-- 丰富的插件生态
-
-**常用命令：**
-
-```bash
-# 安装依赖
-poetry install
-
-# 添加依赖
-poetry add package-name
-poetry add --group dev package-name
-
-# 移除依赖
-poetry remove package-name
-
-# 更新依赖
-poetry update
-
-# 运行命令
-poetry run python script.py
-poetry run pytest
 ```
 
 ## 代码质量

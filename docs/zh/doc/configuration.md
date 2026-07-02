@@ -35,21 +35,8 @@ docs = [
 ]
 ```
 
-#### [tool.poetry]（poetry 兼容）
-
-```toml
-[tool.poetry]
-name = "project-name"
-version = "1.0.0"
-description = "Project description"
-
-[tool.poetry.dependencies]
-python = ">=3.10,<3.14"
-package1 = ">=1.0.0"
-
-[tool.poetry.group.dev.dependencies]
-pytest = ">=7.0.0"
-```
+本模板仅使用 uv。依赖统一定义在 `[project]` 和 `[project.optional-dependencies]` 中，
+使用 `uv add` / `uv add --optional <分组>` 进行管理。
 
 #### 工具配置
 
@@ -223,35 +210,28 @@ docs:
 
 ### config/config.yaml
 
-**作用：** 应用程序配置文件（如果使用 Hydra 等配置管理工具）。
-
-**示例配置：**
+**作用：** Hydra 主配置文件。这是一个很小的入口文件（约 6 行），通过名为 `ds` 的
+config group 组合各平台的数据源配置：
 
 ```yaml
-# 数据库配置
-database:
-  host: localhost
-  port: 5432
-  name: myapp
-
-# API 配置
-api:
-  host: 0.0.0.0
-  port: 8000
-  debug: false
-
-# 日志配置
-logging:
-  level: INFO
-  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+defaults:
+  - ds: mac
+  - _self_
 ```
+
+`defaults` 指定要加载哪个 `ds` 配置（默认 `mac`），`_self_` 允许本文件覆盖组合后的值。
+将 `ds: mac` 改为 `ds: linux` 或 `ds: win` 即可加载不同平台的数据源配置。
 
 ### config/ds/
 
-存储数据集特定的配置文件：
+`ds` config group 存放各平台的数据源配置：
 
-- `mac.yaml` - macOS 特定配置
-- `win.yaml` - Windows 特定配置
+- `linux.yaml`
+- `mac.yaml`
+- `win.yaml`
+
+默认情况下，这些文件都是仅包含说明注释的占位文件。请把你的平台特定数据路径、
+连接字符串或数据集位置写入相应文件。
 
 ## 环境变量
 
@@ -332,9 +312,6 @@ line-length = 100
 ```toml
 [project]
 requires-python = ">=3.11,<3.14"  # 更新版本要求
-
-[tool.poetry.dependencies]
-python = ">=3.11,<3.14"  # 同步更新
 ```
 
 ### 修改测试覆盖率要求
@@ -371,8 +348,7 @@ setting2 = "value2"
 A: 编辑 `pyproject.toml`，然后运行：
 
 ```bash
-uv lock  # uv
-poetry lock  # poetry
+uv lock
 ```
 
 ### Q: 如何忽略某些文件/目录？

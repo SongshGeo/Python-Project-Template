@@ -4,6 +4,11 @@
 
 本文档说明项目的代码规范、开发流程和最佳实践。
 
+!!! note "Claude Code 的权威依据"
+    根目录的 `CLAUDE.md` 是本项目权威的编码规范与 skill 索引——请从这里开始。顶层的
+    `memory-bank/` 驱动一个 plan → architect → progress 闭环：动手前先阅读，完成后及时
+    更新，以便下一次会话的上下文始终保持最新。
+
 ## 代码风格
 
 ### Python 代码风格
